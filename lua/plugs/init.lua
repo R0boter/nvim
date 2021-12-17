@@ -1,6 +1,5 @@
 require('plugs/nvim-tree')
 require('plugs/nvim-cmp')
 require('plugs/nvim-lspconfig')
-require('plugs/lspsaga-nvim')
 require('plugs/emmet-vim')
 require('plugs/ui')

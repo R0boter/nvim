@@ -2,56 +2,65 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
  if fn.empty(fn.glob(install_path)) > 0 then
-   packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://gitee.com/nvim-plug-gitee-fork/packer.nvim', install_path})
+   Packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://hub.fastgit.org/wbthomason/packer.nvim', install_path})
  end
 
-return require('packer').startup(function(use)
+local packer = require('packer')
+
+packer.init({
+    git = {
+        default_url_format = 'https://hub.fastgit.org/%s'
+    }
+})
+
+packer.startup(function(use)
   -- My plugins here
   -- use 'foo1/bar1.nvim'
   -- use 'foo2/bar2.nvim'
   --
   -- A File Explorer For Neovim Written In Lua
   use {
-    'nvim-plug-gitee-fork/nvim-tree.lua',
+    'kyazdani42/nvim-tree.lua',
     requires = {
-    	'nvim-plug-gitee-fork/nvim-web-devicons',
+    	'kyazdani42/nvim-web-devicons',
     }
   }
-  -- AutoCompletion plugins
-  use 'nvim-plug-gitee-fork/nvim-lspconfig'
-  use 'nvim-plug-gitee-fork/cmp-nvim-lsp'
-  use 'nvim-plug-gitee-fork/cmp-buffer'
-  use 'nvim-plug-gitee-fork/cmp-path'
-  use 'nvim-plug-gitee-fork/cmp-cmdline'
-  use 'nvim-plug-gitee-fork/nvim-cmp'
-  use 'nvim-plug-gitee-fork/cmp-vsnip'
-  use 'nvim-plug-gitee-fork/vim-vsnip'
-  use 'nvim-plug-gitee-fork/nvim-autopairs'
-  use 'nvim-plug-gitee-fork/emmet-vim'
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+  use 'windwp/nvim-autopairs'
+  use 'mattn/emmet-vim'
 
   -- UI
-  use {'nvim-plug-gitee-fork/nvim-treesitter', run = ':TSUpdate'}
-  use 'nvim-plug-gitee-fork/lspsaga.nvim'
+
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use {
-    'nvim-plug-gitee-fork/bufferline.nvim',
+    'akinsho/bufferline.nvim',
     requires = {
-    	'nvim-plug-gitee-fork/nvim-web-devicons',
+    	'kyazdani42/nvim-web-devicons',
     }
   }
 
   -- Telescope (require ripgrep)
   use {
-    'nvim-plug-gitee-fork/telescope.nvim',
-    requires = {{'nvim-plug-gitee-fork/plenary.nvim'}},
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/plenary.nvim'}},
   }
   use {
-	  'nvim-plug-gitee-fork/telescope-media-files.nvim',
-	  requires = {{'nvim-plug-gitee-fork/popup.nvim'}},
+	  'nvim-telescope/telescope-media-files.nvim',
+	  requires = {{'nvim-lua/popup.nvim'}},
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
-  if packer_bootstrap then
+  if Packer_bootstrap then
     require('packer').sync()
   end
 end)
