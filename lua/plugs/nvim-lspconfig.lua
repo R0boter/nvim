@@ -5,7 +5,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- Set sumneko_lua_language_server executable file
 local lua_server_exe= ""
 if vim.fn.has("win32") == 1 then
-  lua_server_exe = "lua-language-server.exe"
+  lua_server_exe = {vim.fn.stdpath("data").."/lsp_servers/sumneko_lua/extension/server/bin/Windows/lua-language-server.exe"}
 else
   lua_server_exe = "lua-language-server"
 end
@@ -86,16 +86,27 @@ installer.on_server_ready(function(server)
   -- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
   local server_opts = {
     ["sumneko_lua"] = function()
-      default_opts.cmd={vim.fn.stdpath("data").."/lsp_servers/sumneko_lua/extension/server/bin/Linux/"..lua_server_exe}
+      default_opts.cmd=lua_server_exe
       default_opts.root_dir = function ()
           return vim.fn.getcwd()
       end
-
+	  default_opts.workspace = {
+		  maxPreload = 10000,
+		  preloadFileSize = 10000,
+	  }
       default_opts.settings = {
           Lua = {
               runtime = {
                   version = 'LuaJIT',
-                  path = vim.split(package.path, ';')
+                  path = vim.split(package.path, ';'),
+--              path = {
+--                '?.lua',
+--                '?/init.lua',
+--                vim.fn.expand'~/.luarocks/share/lua/5.3/?.lua',
+--                vim.fn.expand'~/.luarocks/share/lua/5.3/?/init.lua',
+--                '/usr/share/5.3/?.lua',
+--                '/usr/share/lua/5.3/?/init.lua'
+--              }
               },
               diagnostics = {
                   globals = {"vim"}
@@ -105,6 +116,8 @@ installer.on_server_ready(function(server)
                   -- {
                   -- 	[vim.fn.expand('$VIMRUNTIME/lua')] = true,
                   -- 	[vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+				  --   [vim.fn.expand'~/.luarocks/share/lua/5.3'] = true,
+				  --   ['/usr/share/lua/5.3'] = true
                   -- }
               },
               telemetry = {
@@ -113,43 +126,34 @@ installer.on_server_ready(function(server)
 
           }
     }
-
---      default_opts.settings = {
---          Lua = {
---            runtime = {
---              version = 'Lua 5.3',
---              path = {
---                '?.lua',
---                '?/init.lua',
---                vim.fn.expand'~/.luarocks/share/lua/5.3/?.lua',
---                vim.fn.expand'~/.luarocks/share/lua/5.3/?/init.lua',
---                '/usr/share/5.3/?.lua',
---                '/usr/share/lua/5.3/?/init.lua'
---              }
---            },
---            workspace = {
---              library = {
---                [vim.fn.expand'~/.luarocks/share/lua/5.3'] = true,
---                ['/usr/share/lua/5.3'] = true
---              }
---            }
---          }
---        }
       return default_opts
     end,
 
     ["tsserver"] = function ()
       default_opts.filetypes = {"html",  "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"}
       default_opts.root_dir = function ()
-          return vim.fn.getcwd()
+        return vim.fn.getcwd()
       end
       return default_opts
     end,
---
---    ["pyright"] = function ()
---      default_opts.settings = {}
---    end,
---
+
+    ["pyright"] = function ()
+	  default_opts.root_dir = function ()
+        return vim.fn.getcwd()
+	  end
+      default_opts.settings = {
+	    python = {
+		  pythonPath = ".env/Scripts/python",
+		  analysis = {
+			autoImportCompletions = true,
+			autoSearchPaths = true,
+			diagnosticMode = "workspace",
+			useLibraryCodeForTypes = true,
+		  },
+		}
+      }
+    end,
+
 --    ["html"] = function ()
 --      default_opts.settings = {}
 --    end,

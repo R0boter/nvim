@@ -25,6 +25,7 @@ packer.startup(function(use)
     	'kyazdani42/nvim-web-devicons',
     }
   }
+
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
@@ -47,6 +48,12 @@ packer.startup(function(use)
     	'kyazdani42/nvim-web-devicons',
     }
   }
+  use {
+	  'nvim-lualine/lualine.nvim',
+	  requires = {'kyazdani42/nvim-web-devicons', opt = true}
+	}
+  use 'shaunsingh/nord.nvim'
+  use 'ful1e5/onedark.nvim'
 
   -- Telescope (require ripgrep)
   use {

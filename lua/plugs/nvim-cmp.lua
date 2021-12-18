@@ -37,10 +37,9 @@ local kind_icons = {
 }
 
 cmp.setup({
-
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      vim.fn['vsnip#anonymous'](args.body) -- For `vsnip` users.
     end,
   },
 
@@ -114,32 +113,21 @@ sources = {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-sources = cmp.config.sources({
-  { name = 'path' }
-}, {
-  { name = 'cmdline' }
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
 })
-})
-
 
 -- Set snip files dir
-if vim.fn.has("mac") == 1 then
-  vim.g.vsnip_snippet_dir = os.getenv('HOME') .. '/.config/nvim/snippets'
-elseif vim.fn.has("unix") == 1 then
-  vim.g.vsnip_snippet_dir = os.getenv('HOME') .. '/.config/nvim/snippets'
-elseif vim.fn.has("win32") == 1 then
+if vim.fn.has("win32") == 1 then
   vim.g.vsnip_snippet_dir = os.getenv('HOME') .. '/AppData/Local/nvim/snippets'
 else
-  print("Sorry this system is not supported!!test")
-end 
+  vim.g.vsnip_snippet_dir = os.getenv('HOME') .. '/.config/nvim/snippets'
+end
 
 require('nvim-autopairs').setup{}
-
-
-
-
-
-
 
 
 
