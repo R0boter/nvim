@@ -7,7 +7,7 @@ local lua_server_exe= ""
 if vim.fn.has("win32") == 1 then
   lua_server_exe = {vim.fn.stdpath("data").."/lsp_servers/sumneko_lua/extension/server/bin/Windows/lua-language-server.exe"}
 else
-  lua_server_exe = "lua-language-server"
+  lua_server_exe = {vim.fn.stdpath("data").."/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"}
 end
 
 -- Lsp installer
@@ -86,7 +86,7 @@ installer.on_server_ready(function(server)
   -- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
   local server_opts = {
     ["sumneko_lua"] = function()
-      default_opts.cmd=lua_server_exe
+      default_opts.cmd = lua_server_exe
       default_opts.root_dir = function ()
           return vim.fn.getcwd()
       end
