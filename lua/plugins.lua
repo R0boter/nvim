@@ -42,6 +42,7 @@ packer.startup(function(use)
   -- UI
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use 'glepnir/lspsaga.nvim'
   use {
     'akinsho/bufferline.nvim',
     requires = {
