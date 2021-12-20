@@ -34,3 +34,6 @@ keybind('x', 'J', ':move \'>+1<CR>gv-gv', opts)
 -- Telescope
 keybind('n', '<Leader>s', ':Telescope current_buffer_fuzzy_find<CR>', opts)
 
+-- Lspsaga
+keybind('n', '<A-d>', ':Lspsaga open_floaterm<CR>', opts)
+keybind('t', '<A-d>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>', opts)

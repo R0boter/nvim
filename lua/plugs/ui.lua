@@ -3,12 +3,12 @@ vim.o.cursorline = true
 vim.o.cursorcolumn = true
 
 -- colorscheme
-vim.g.nord_contrast = true -- Make sidebars and popup menus like nvim-tree and telescope have a different background
-vim.g.nord_borders = true -- Enable the border between verticaly split windows visable
-vim.g.nord_disable_background = true -- Disable the setting of background color so that NeoVim can use your terminal background
-vim.g.nord_enable_sidebar_background = false -- Re-enables the backgrond of the sidebar if you disabled the background of everything
+vim.g.nord_contrast = true
+vim.g.nord_borders = true
+vim.g.nord_disable_background = true
+vim.g.nord_enable_sidebar_background = false
 vim.g.nord_cursorline_transparent = true
-vim.g.nord_italic = false -- enables/disables italics
+vim.g.nord_italic = false
 require('nord').set()
 
 --require('onedark').setup()
@@ -40,7 +40,7 @@ local conditions = {
 require'lualine'.setup {
   options = {
     icons_enabled = true,
-    theme = 'onedark',
+    theme = 'nord',
     component_separators = '|',
     section_separators = { left = ' ', right = ' ' },
     disabled_filetypes = {},
@@ -162,6 +162,12 @@ require'lualine'.setup {
   extensions = {'nvim-tree', 'quickfix'}
 }
 
+-- Lspsaga configure
+
+require('lspsaga').init_lsp_saga()
+local opts = { noremap=true, silent=true }
+-- vim.api.nvim_buf_set_keymap('n', '<A-d>', ':Lspsaga open_floaterm<CR>', opts)
+-- vim.api.nvim_buf_set_keymap('t', '<A-d>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>', opts)
 -- bufferline
 --require('bufferline').setup {
 --  options = {
