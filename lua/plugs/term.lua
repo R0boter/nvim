@@ -7,6 +7,7 @@ if vim.fn.has('wim32') then
     vim.o.shellquote='\"'
     vim.o.shellxquote=''
 end
+
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
@@ -59,7 +60,7 @@ require('project_nvim').setup{
 
   -- All the patterns used to detect root dir, when **"pattern"** is in
   -- detection_methods
-  patterns = {".env", ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
+  patterns = {".env", ".git", "Makefile", "package.json", "README.md" },
 
   -- Table of lsp clients to ignore by name
   -- eg: { "efm", ... }

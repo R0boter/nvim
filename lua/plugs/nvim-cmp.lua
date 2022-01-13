@@ -3,11 +3,13 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local feedkey = function(key, mode)
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
-end
+--local feedkey = function(key, mode)
+--  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+--end
 
 local cmp = require('cmp')
+local luasnip = require("luasnip")
+
 local kind_icons = {
   Text = "",
   Method = "",
@@ -39,7 +41,8 @@ local kind_icons = {
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn['vsnip#anonymous'](args.body) -- For `vsnip` users.
+--		vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
 
@@ -56,24 +59,25 @@ cmp.setup({
       behavior = cmp.ConfirmBehavior.Replace,
 --      select = true,
     }),
-
-    ["<Tab>"] = cmp.mapping(function(fallback)
+["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
       else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+        fallback()
       end
     end, { "i", "s" }),
 
-    ["<S-Tab>"] = cmp.mapping(function()
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
       end
     end, { "i", "s" }),
 
@@ -81,7 +85,7 @@ cmp.setup({
 
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' },
+    { name = 'luasnip' },
   },{
     { name = 'buffer' },
     { name = 'path' },
@@ -95,7 +99,7 @@ cmp.setup({
       vim_item.menu = ({
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
-        vsnip = "[VSP]",
+        vsnip = "[SNP]",
         path = "[PATH]",
       })[entry.source.name]
       return vim_item
@@ -120,13 +124,18 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Set snip files dir
+-- Set vsnip
+local snippet_dir = ""
 if vim.fn.has("win32") == 1 then
-  vim.g.vsnip_snippet_dir = os.getenv('HOME') .. '/AppData/Local/nvim/snippets'
+  snippet_dir = os.getenv('HOME') .. '/AppData/Local/nvim/snippets'
 else
-  vim.g.vsnip_snippet_dir = os.getenv('HOME') .. '/.config/nvim/snippets'
+  snippet_dir = os.getenv('HOME') .. '/.config/nvim/snippets'
 end
+require("luasnip.loaders.from_vscode").load({paths = { snippet_dir}
+})
 
+--vim.g.vsnip_filetypes.element = {'vue'}
+-- Set autopairs
 require('nvim-autopairs').setup{}
 
 

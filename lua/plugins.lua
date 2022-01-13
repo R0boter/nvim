@@ -7,10 +7,16 @@ local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 local packer = require('packer')
 
+--config
 packer.init({
     git = {
         default_url_format = 'https://github.com.cnpmjs.org/%s'
-    }
+    },
+--	display = {
+--		open_fn = function ()
+--			return require('packer.until').float({border = 'single'})
+--		end
+--	}
 })
 
 packer.startup(function(use)
@@ -32,15 +38,27 @@ packer.startup(function(use)
   use 'ahmedkhalf/project.nvim'
 
   -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/vim-vsnip'
+  use {
+		'neovim/nvim-lspconfig',
+		requires = {
+			'williamboman/nvim-lsp-installer'
+		}
+	}
+  use {
+		'hrsh7th/nvim-cmp',
+		requires = {
+		   'hrsh7th/cmp-nvim-lsp',
+		   'hrsh7th/cmp-buffer',
+		   'hrsh7th/cmp-path',
+		   'hrsh7th/cmp-cmdline',
+		}
+	}
+  use {
+		'L3MON4D3/LuaSnip',
+		requires = {
+			'saadparwaiz1/cmp_luasnip'
+		}
+	}
   use 'windwp/nvim-autopairs'
   use 'mattn/emmet-vim'
   use 'windwp/nvim-ts-autotag'
@@ -76,6 +94,7 @@ packer.startup(function(use)
 
   -- Terminal
   use 'akinsho/toggleterm.nvim'
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
