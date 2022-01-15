@@ -7,7 +7,7 @@ end
 --  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 --end
 
-local cmp = require('cmp')
+local cmp = require("cmp")
 local luasnip = require("luasnip")
 
 local kind_icons = {
@@ -38,105 +38,111 @@ local kind_icons = {
   TypeParameter = ""
 }
 
-cmp.setup({
-  snippet = {
-    expand = function(args)
---		vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-    luasnip.lsp_expand(args.body) -- For `luasnip` users.
-    end,
-  },
-
-  mapping = {
-    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-    ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
---      select = true,
-    }),
-["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
+cmp.setup(
+  {
+    snippet = {
+      expand = function(args)
+        --		vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        luasnip.lsp_expand(args.body) -- For `luasnip` users.
       end
-    end, { "i", "s" }),
-
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
+    },
+    mapping = {
+      ["<C-n>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Insert}),
+      ["<C-p>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Insert}),
+      ["<Down>"] = cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}),
+      ["<Up>"] = cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}),
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.close(),
+      ["<CR>"] = cmp.mapping.confirm(
+        {
+          behavior = cmp.ConfirmBehavior.Replace
+          --      select = true,
+        }
+      ),
+      ["<Tab>"] = cmp.mapping(
+        function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end,
+        {"i", "s"}
+      ),
+      ["<S-Tab>"] = cmp.mapping(
+        function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end,
+        {"i", "s"}
+      )
+    },
+    sources = cmp.config.sources(
+      {
+        {name = "nvim_lsp"},
+        {name = "luasnip"}
+      },
+      {
+        {name = "buffer"},
+        {name = "path"}
+      }
+    ),
+    formatting = {
+      format = function(entry, vim_item)
+        -- Kind icons
+        vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind)
+        -- Source
+        vim_item.menu =
+          ({
+          buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          vsnip = "[SNP]",
+          path = "[PATH]"
+        })[entry.source.name]
+        return vim_item
       end
-    end, { "i", "s" }),
-
-  },
-
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },{
-    { name = 'buffer' },
-    { name = 'path' },
-  }),
-
-  formatting = {
-    format = function(entry, vim_item)
-      -- Kind icons
-      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
-      -- Source
-      vim_item.menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        vsnip = "[SNP]",
-        path = "[PATH]",
-      })[entry.source.name]
-      return vim_item
-    end,
+    }
   }
-
-})
+)
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-sources = {
-  { name = 'buffer' }
-}
-})
+cmp.setup.cmdline(
+  "/",
+  {
+    sources = {
+      {name = "buffer"}
+    }
+  }
+)
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
-})
+cmp.setup.cmdline(
+  ":",
+  {
+    sources = cmp.config.sources(
+      {
+        {name = "path"}
+      },
+      {
+        {name = "cmdline"}
+      }
+    )
+  }
+)
 
 -- Set vsnip
-local snippet_dir = ""
-if vim.fn.has("win32") == 1 then
-  snippet_dir = os.getenv('HOME') .. '/AppData/Local/nvim/snippets'
-else
-  snippet_dir = os.getenv('HOME') .. '/.config/nvim/snippets'
-end
-require("luasnip.loaders.from_vscode").load({paths = { snippet_dir}
-})
 
 --vim.g.vsnip_filetypes.element = {'vue'}
 -- Set autopairs
-require('nvim-autopairs').setup{}
-
-
-
+require("nvim-autopairs").setup {}

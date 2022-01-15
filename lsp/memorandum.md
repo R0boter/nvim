@@ -23,7 +23,6 @@ vscode-css-language-server
 vscode-json-language-server
 vscode-eslint-language-server
 
-
 url：https://github.com/hrsh7th/vscode-langservers-extracted
 
 `npm i -g vscode-langservers-extracted`
@@ -52,20 +51,8 @@ url：https://intelephense.com/
 
 `npm install -g intelephense`
 
-
 ### go
 
 url：https://github.com/golang/tools/tree/master/gopls
 
 `go install golang.org/x/tools/gopls@latest`
-
-
-
-
-
-
-
-
-
-
-
