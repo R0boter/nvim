@@ -25,7 +25,7 @@ local conds = require("luasnip.extras.expand_conditions")
 -- Every unspecified option will be set to the default.
 ls.config.set_config(
   {
-    history = true,
+    history = false,
     -- Update more often, :h events for more info.
     updateevents = "TextChanged,TextChangedI",
     -- Snippets aren't automatically removed if their text is deleted.
