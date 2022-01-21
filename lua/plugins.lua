@@ -39,7 +39,7 @@ packer.startup(
       }
     }
 
-    use "ahmedkhalf/project.nvim"
+    --  use "ahmedkhalf/project.nvim"
 
     -- LSP
     use {
@@ -66,6 +66,7 @@ packer.startup(
     use "windwp/nvim-autopairs"
     use "mattn/emmet-vim"
     use "windwp/nvim-ts-autotag"
+    use "b3nj5m1n/kommentary"
     use "mhartington/formatter.nvim"
 
     -- UI
@@ -98,7 +99,7 @@ packer.startup(
     }
 
     -- Terminal
-    use "akinsho/toggleterm.nvim"
+    -- use "akinsho/toggleterm.nvim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
