@@ -4,19 +4,19 @@ vim.o.cursorcolumn = true
 
 -- colorscheme
 
---vim.g.gruvbox_baby_function_style = "NONE"
---vim.g.gruvbox_baby_keyword_style = "italic"
---vim.cmd[[colorscheme gruvbox-baby]]
---vim.cmd [[highlight NvimTreeNormal guibg=NONE]]
---vim.cmd [[highlight NvimTreeNormalNC guibg=NONE]]
+vim.g.gruvbox_baby_function_style = "NONE"
+vim.g.gruvbox_baby_keyword_style = "italic"
+vim.cmd [[colorscheme gruvbox-baby]]
+vim.cmd [[highlight NvimTreeNormal guibg=NONE]]
+vim.cmd [[highlight NvimTreeNormalNC guibg=NONE]]
 
-vim.g.nord_contrast = true
-vim.g.nord_borders = true
-vim.g.nord_disable_background = true
-vim.g.nord_enable_sidebar_background = false
-vim.g.nord_cursorline_transparent = true
-vim.g.nord_italic = false
-require("nord").set()
+--vim.g.nord_contrast = true
+--vim.g.nord_borders = true
+--vim.g.nord_disable_background = true
+--vim.g.nord_enable_sidebar_background = false
+--vim.g.nord_cursorline_transparent = true
+--vim.g.nord_italic = false
+--require("nord").set()
 
 -- indent blankline
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
@@ -76,7 +76,7 @@ local conditions = {
 require "lualine".setup {
   options = {
     icons_enabled = true,
-    theme = "nord",
+    theme = "gruvbox",
     component_separators = "|",
     section_separators = {left = " ", right = " "},
     disabled_filetypes = {},
