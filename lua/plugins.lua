@@ -64,7 +64,6 @@ packer.startup(
       }
     }
     use "windwp/nvim-autopairs"
-    use "mattn/emmet-vim"
     use "windwp/nvim-ts-autotag"
     use "b3nj5m1n/kommentary"
     use "mhartington/formatter.nvim"

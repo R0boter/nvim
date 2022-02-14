@@ -9,7 +9,6 @@
         "language": [
           "markdown",
           "tex",
-          "html",
           "global"
         ],
         "path": "./global.json"
@@ -30,7 +29,6 @@
       },
       {
         "language": [
-          "html",
           "jade",
           "pug",
           "eruby"
@@ -57,19 +55,19 @@
         "path": "./javascript/javascript.json"
       },
       {
-        "language": [
-          "typescript",
-          "typescriptreact"
-        ],
-        "path": "./javascript/typescript.json"
-      },
-      {
         "language": "javascriptreact",
         "path": "./javascript/react.json"
       },
       {
         "language": "javascriptreact",
         "path": "./javascript/react-native.json"
+      },
+      {
+        "language": [
+          "typescript",
+          "typescriptreact"
+        ],
+        "path": "./javascript/typescript.json"
       },
       {
         "language": "typescriptreact",

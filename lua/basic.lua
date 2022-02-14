@@ -1,10 +1,14 @@
 vim.o.number = true
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 vim.bo.expandtab = true
---vim.o.guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1"
+vim.o.guicursor = "n-i-c-ci-cr:ver1,v-ve-o-r-sm:hor1"
 vim.o.hlsearch = false
 vim.o.scrolloff = 15
+vim.o.clipboard = "unnamedplus"
+vim.o.autoread = true
+vim.o.fdm = "indent"
+vim.o.foldlevelstart = 99
 vim.api.nvim_command("autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE")
 vim.o.backup = true
 vim.o.swapfile = true
@@ -16,3 +20,5 @@ vim.o.backupdir = vim.fn.stdpath("data") .. "/backup_temp/"
 require("plugins")
 require("plugs")
 require("keymaps")
+
+vim.w.scl = "no"

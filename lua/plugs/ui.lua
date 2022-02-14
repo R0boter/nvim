@@ -110,7 +110,8 @@ require "lualine".setup {
         separator = "",
         padding = {left = 1, right = -1},
         colored = true,
-        icon_only = true
+        --icon_only = true
+        icon_only = false
       },
       {
         "filename",

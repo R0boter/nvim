@@ -1,11 +1,16 @@
 local keybind = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
+function _G.reloadSnip()
+  require("luasnip").cleanup()
+  require("luasnip.loaders.from_vscode").load({paths = {os.getenv("HOME") .. "/.config/nvim/snippets"}})
+end
 
 -- Leader key
 vim.g.mapleader = " "
 
 -- Explorer
 keybind("n", "<Leader>e", ":NvimTreeToggle<CR>", opts)
+keybind("n", "<Leader>re", ":NvimTreeRefresh<CR>", opts)
 
 -- Window movement
 keybind("n", "<left>", "<C-w>h", opts)
@@ -45,6 +50,8 @@ keybind("n", "<Leader>fs", ":Telescope grep_string<CR>", opts)
 keybind("n", "<Leader>ff", ":Telescope find_files<CR>", opts)
 keybind("n", "<Leader>fp", ":Telescope projects<CR>", opts)
 
+-- reload luasnip
+vim.api.nvim_set_keymap("n", "<Leader>rs", ":lua reloadSnip()<CR>", opts)
 -- Terminal
 --keybind("t", "<ESC>", "<C-\\><C-n><CR>", opts)
 --keybind("n", "<Leader>t", ":ToggleTermToggleAll<CR>", opts)

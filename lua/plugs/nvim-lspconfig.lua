@@ -33,6 +33,7 @@ local servers = {
   "sumneko_lua",
   "vuels",
   "intelephense",
+  "emmet_ls",
   "html",
   "cssls",
   "jsonls"
@@ -126,10 +127,8 @@ installer.on_server_ready(
           "html",
           "javascript",
           "javascriptreact",
-          "javascript.jsx",
           "typescript",
-          "typescriptreact",
-          "typescript.tsx"
+          "typescriptreact"
         }
         default_opts.root_dir = function()
           return vim.fn.getcwd()
@@ -152,10 +151,14 @@ installer.on_server_ready(
           }
         }
       end,
-      --    ["html"] = function ()
-      --      default_opts.settings = {}
-      --    end,
-      --
+      ["html"] = function()
+        default_opts.filetypes = {
+          "html"
+        }
+        default_opts.root_dir = function()
+          return vim.fn.getcwd()
+        end
+      end,
       ["cssls"] = function()
         default_opts.filetypes = {"css", "scss", "less", "html"}
         default_opts.root_dir = function()

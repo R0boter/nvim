@@ -1,6 +1,20 @@
 local config = require("nvim-treesitter.configs")
 config.setup {
-  ensure_installed = {"lua", "vim", "python", "html", "javascript", "css", "json", "jsonc", "vue", "php", "markdown"},
+  ensure_installed = {
+    "lua",
+    "vim",
+    "python",
+    "html",
+    "javascript",
+    "typescript",
+    "tsx",
+    "css",
+    "json",
+    "jsonc",
+    "vue",
+    "php",
+    "markdown"
+  },
   sync_install = false,
   highlight = {
     enable = true,
@@ -19,7 +33,13 @@ config.setup {
     enable = true
   },
   autotag = {
-    enable = true
+    enable = true,
+    filetypes = {
+      "html",
+      "javascriptreact",
+      "typescriptreact",
+      "vue"
+    }
   },
   rainbow = {
     enable = true,
