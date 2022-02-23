@@ -64,13 +64,6 @@ packer.startup(
       }
     }
 
-    -- Edit
-    use "ggandor/lightspeed.nvim"
-    use "steelsojka/pears.nvim"
-    use "b3nj5m1n/kommentary"
-    use "mhartington/formatter.nvim"
-    use "mg979/vim-visual-multi"
-
     -- UI
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     --  use 'tami5/lspsaga.nvim'
@@ -90,6 +83,13 @@ packer.startup(
     use "shaunsingh/nord.nvim"
     use {"luisiacc/gruvbox-baby", branch = "main"}
     use {"Avimitin/neovim-deus"}
+
+    -- Edit
+    use "ggandor/lightspeed.nvim"
+    use "steelsojka/pears.nvim"
+    use "b3nj5m1n/kommentary"
+    use "mhartington/formatter.nvim"
+    use "mg979/vim-visual-multi"
 
     -- Telescope (require ripgrep)
     use {
