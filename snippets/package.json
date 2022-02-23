@@ -79,18 +79,6 @@
       },
       {
         "language": "vue",
-        "path": "./frameworks/vue/html.json"
-      },
-      {
-        "language": "vue",
-        "path": "./frameworks/vue/pug.json"
-      },
-      {
-        "language": "vue",
-        "path": "./frameworks/vue/javascript.json"
-      },
-      {
-        "language": "vue",
         "path": "./frameworks/vue/vue.json"
       },
       {

@@ -4,11 +4,13 @@ vim.o.cursorcolumn = true
 
 -- colorscheme
 
-vim.g.gruvbox_baby_function_style = "NONE"
-vim.g.gruvbox_baby_keyword_style = "italic"
-vim.cmd [[colorscheme gruvbox-baby]]
-vim.cmd [[highlight NvimTreeNormal guibg=NONE]]
-vim.cmd [[highlight NvimTreeNormalNC guibg=NONE]]
+vim.cmd [[colors deus]]
+
+--vim.g.gruvbox_baby_function_style = "NONE"
+--vim.g.gruvbox_baby_keyword_style = "italic"
+--vim.cmd [[colorscheme gruvbox-baby]]
+--vim.cmd [[highlight NvimTreeNormal guibg=NONE]]
+--vim.cmd [[highlight NvimTreeNormalNC guibg=NONE]]
 
 --vim.g.nord_contrast = true
 --vim.g.nord_borders = true
@@ -86,6 +88,9 @@ require "lualine".setup {
     lualine_a = {
       {
         "mode",
+        fmt = function(str)
+          return str:sub(1, 1)
+        end,
         padding = 1
       }
     },
@@ -110,11 +115,18 @@ require "lualine".setup {
         separator = "",
         padding = {left = 1, right = -1},
         colored = true,
-        --icon_only = true
-        icon_only = false
+        icon_only = true
       },
       {
         "filename",
+        file_status = true,
+        path = 1,
+        shorting_target = 40,
+        symbols = {
+          modified = " פֿ", -- Text to show when the file is modified.
+          readonly = " ", -- Text to show when the file is non-modifiable or readonly.
+          unnamed = "" -- Text to show for unnamed buffers.
+        },
         separator = {right = ""}
       }
     },

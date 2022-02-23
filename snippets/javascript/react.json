@@ -281,11 +281,6 @@
     "body": "{${1:array}.map((item) => {\n\treturn <${2:elementName} key={item.id}>\n\t$0\n</${2}>\n})}",
     "description": "an element self closed"
   },
-  "jsx element wrap selection": {
-    "prefix": "jsx wrap selection with element",
-    "body": "<${1:elementName}>\n\t{$TM_SELECTED_TEXT}\n</${1}>",
-    "description": "an element"
-  },
   "useState": {
     "prefix": "us",
     "body": "const [${1:setterName}, set${1:setterName}] = useState(${2:defVal})$0",
@@ -340,45 +335,5 @@
       "const ${1:memoizedValue} = useMemo(() => ${2:computeExpensiveValue}(${3:a}, ${4:b}), [${5:a}, ${6:b}])$0"
     ],
     "description": "React useMemo() hook"
-  },
-	"describeBlock": {
-    "prefix": "desc",
-    "body": [
-      "describe('$1', () => {",
-      "  $0",
-      "})",
-      ""
-    ],
-    "description": "Testing `describe` block"
-  },
-  "testBlock": {
-    "prefix": "test",
-    "body": [
-      "test('should $1', () => {",
-      "  $0",
-      "})",
-      ""
-    ],
-    "description": "Testing `test` block"
-  },
-  "itBlock": {
-    "prefix": "tit",
-    "body": [
-      "it('should $1', () => {",
-      "  $0",
-      "})",
-      ""
-    ],
-    "description": "Testing `it` block"
-  },
-  "itAsyncBlock": {
-    "prefix": "tita",
-    "body": [
-      "it('should $1', async () => {",
-      "  $0",
-      "})",
-      ""
-    ],
-    "description": "Testing async `it` block"
   }
 }

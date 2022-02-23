@@ -3,7 +3,7 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
   Packer_bootstrap =
-    fn.system({"git", "clone", "--depth", "1", "https://github.com.cnpmjs.org/wbthomason/packer.nvim", install_path})
+    fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
 local packer = require("packer")
@@ -12,7 +12,7 @@ local packer = require("packer")
 packer.init(
   {
     git = {
-      default_url_format = "https://github.com.cnpmjs.org/%s"
+      default_url_format = "https://github.com/%s"
     }
     --	display = {
     --		open_fn = function ()
@@ -63,10 +63,13 @@ packer.startup(
         "saadparwaiz1/cmp_luasnip"
       }
     }
-    use "windwp/nvim-autopairs"
-    use "windwp/nvim-ts-autotag"
+
+    -- Edit
+    use "ggandor/lightspeed.nvim"
+    use "steelsojka/pears.nvim"
     use "b3nj5m1n/kommentary"
     use "mhartington/formatter.nvim"
+    use "mg979/vim-visual-multi"
 
     -- UI
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
@@ -86,6 +89,7 @@ packer.startup(
     use "norcalli/nvim-colorizer.lua"
     use "shaunsingh/nord.nvim"
     use {"luisiacc/gruvbox-baby", branch = "main"}
+    use {"Avimitin/neovim-deus"}
 
     -- Telescope (require ripgrep)
     use {

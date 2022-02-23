@@ -140,9 +140,3 @@ cmp.setup.cmdline(
     )
   }
 )
-
--- Set vsnip
-
---vim.g.vsnip_filetypes.element = {'vue'}
--- Set autopairs
-require("nvim-autopairs").setup {}

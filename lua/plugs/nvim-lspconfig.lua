@@ -1,17 +1,10 @@
 -- Setup lspconfig.
 local installer = require("nvim-lsp-installer")
-local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Set sumneko_lua_language_server executable file
-local lua_server_exe = ""
-if vim.fn.has("win32") == 1 then
-  lua_server_exe = {
-    vim.fn.stdpath("data") .. "/lsp_servers/sumneko_lua/extension/server/bin/Windows/lua-language-server.exe"
-  }
-else
-  lua_server_exe = {vim.fn.stdpath("data") .. "/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"}
-end
-
+local lua_server_exe = {
+  vim.fn.stdpath("data") .. "/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
+}
 -- Lsp installer
 -- nvim-lsp-installer ui
 installer.settings(
@@ -31,7 +24,7 @@ local servers = {
   "pyright",
   "tsserver",
   "sumneko_lua",
-  "vuels",
+  "volar",
   "intelephense",
   "emmet_ls",
   "html",
@@ -83,6 +76,8 @@ local function on_attach(client, bufnr)
   buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
+
+local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 installer.on_server_ready(
   function(server)
@@ -165,12 +160,12 @@ installer.on_server_ready(
           return vim.fn.getcwd()
         end
         return default_opts
-      end,
-      ["vuels"] = function()
+      end
+      --[[ ["volar"] = function()
         default_opts.root_dir = function()
           return vim.fn.getcwd()
         end
-      end
+      end ]]
 
       --    ["jsonls"] = function ()
       --      default_opts.settings = {}
