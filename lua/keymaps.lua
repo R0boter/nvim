@@ -1,8 +1,14 @@
 local keybind = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
+local snippet_dir = ""
+if vim.fn.has("win32") == 1 then
+  snippet_dir = os.getenv("HOME") .. "/AppData/Local/nvim/snippets"
+else
+  snippet_dir = os.getenv("HOME") .. "/.config/nvim/snippets"
+end
 function _G.reloadSnip()
   require("luasnip").cleanup()
-  require("luasnip.loaders.from_vscode").load({paths = {os.getenv("HOME") .. "/.config/nvim/snippets"}})
+  require("luasnip.loaders.from_vscode").load({paths = snippet_dir})
 end
 
 -- Leader key

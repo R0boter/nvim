@@ -1,6 +1,6 @@
 {
     "vue": {
-        "prefix": "vue",
+        "prefix": "nv",
         "body": [
             "<template>",
             "\t<div$1>",

@@ -79,19 +79,15 @@
       },
       {
         "language": "vue",
-        "path": "./frameworks/vue/vue.json"
+        "path": "./vue/vue.json"
       },
       {
         "language": "vue",
-        "path": "./frameworks/vue/element.json"
-      },
-      {
-        "language": "ejs",
-        "path": "./frameworks/ejs.json"
+        "path": "./vue/element.json"
       },
       {
         "language": "jekyll",
-        "path": "./frameworks/jekyll.json"
+        "path": "./jekyll.json"
       },
       {
         "language": "yaml",
