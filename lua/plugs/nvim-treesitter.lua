@@ -6,8 +6,6 @@ config.setup {
     "python",
     "html",
     "javascript",
-    "typescript",
-    "tsx",
     "css",
     "json",
     "jsonc",

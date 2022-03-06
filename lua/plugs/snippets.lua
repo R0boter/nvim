@@ -272,7 +272,7 @@ ls.filetype_set("cpp", {"c"})
 -- a similar `package.json`)
 local snippet_dir = ""
 if vim.fn.has("win32") == 1 then
-  snippet_dir = os.getenv("HOME") .. "/AppData/Local/nvim/snippets"
+  snippet_dir = os.getenv("HOME") .. "\\AppData\\Local\\nvim\\snippets"
 else
   snippet_dir = os.getenv("HOME") .. "/.config/nvim/snippets"
 end
