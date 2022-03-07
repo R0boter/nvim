@@ -53,6 +53,10 @@ require "colorizer".setup {
 
 -- lualine
 local colors = {
+  bg = "none",
+  fg = "none",
+  --[[ bg = "#202328",
+  fg = "#bbc2cf", ]]
   yellow = "#ECBE7B",
   cyan = "#008080",
   darkblue = "#081633",
@@ -78,9 +82,26 @@ local conditions = {
 require "lualine".setup {
   options = {
     icons_enabled = true,
-    theme = "gruvbox",
-    component_separators = "|",
-    section_separators = {left = " ", right = " "},
+    theme = {
+      normal = {
+        a = {fg = colors.fg, bg = colors.bg},
+        b = {fg = colors.fg, bg = colors.bg},
+        c = {fg = colors.fg, bg = colors.bg},
+        x = {fg = colors.fg, bg = colors.bg},
+        y = {fg = colors.fg, bg = colors.bg},
+        z = {fg = colors.fg, bg = colors.bg}
+      },
+      inactive = {
+        a = {fg = colors.fg, bg = colors.bg},
+        b = {fg = colors.fg, bg = colors.bg},
+        c = {fg = colors.fg, bg = colors.bg},
+        x = {fg = colors.fg, bg = colors.bg},
+        y = {fg = colors.fg, bg = colors.bg},
+        z = {fg = colors.fg, bg = colors.bg}
+      }
+    },
+    component_separators = "",
+    section_separators = {left = "", right = ""},
     disabled_filetypes = {},
     always_divide_middle = true
   },
@@ -88,32 +109,18 @@ require "lualine".setup {
     lualine_a = {
       {
         "mode",
-        fmt = function(str)
+        --[[ fmt = function(str)
           return str:sub(1, 1)
-        end,
-        padding = 1
+        end, ]]
+        separator = {left = ""},
+        right_padding = 2,
+        color = {fg = colors.orange}
       }
     },
     lualine_b = {
       {
-        "branch",
-        separator = "",
-        padding = {left = 1, right = -2}
-      },
-      {
-        "diff",
-        colored = true,
-        diff_color = {
-          added = {fg = colors.green},
-          modified = {fg = colors.orange},
-          removed = {fg = colors.red}
-        },
-        symbols = {added = " ", modified = " ", removed = " "}
-      },
-      {
         "filetype",
         separator = "",
-        padding = {left = 1, right = -1},
         colored = true,
         icon_only = true
       },
@@ -127,10 +134,29 @@ require "lualine".setup {
           readonly = " ", -- Text to show when the file is non-modifiable or readonly.
           unnamed = "" -- Text to show for unnamed buffers.
         },
-        separator = {right = ""}
+        color = {fg = colors.red}
+      },
+      {
+        "filesize",
+        cond = conditions.buffer_not_empty,
+        color = {fg = colors.cyan}
+      },
+      {
+        "location",
+        padding = 1,
+        color = {fg = colors.blue}
+      },
+      {
+        "progress",
+        color = {fg = colors.green}
       }
     },
     lualine_c = {
+      {
+        function()
+          return "%="
+        end
+      },
       {
         function()
           local msg = "No Active Lsp"
@@ -149,42 +175,60 @@ require "lualine".setup {
         end,
         icon = " LSP:",
         color = {fg = colors.magenta, gui = "bold"}
-      }
-    },
-    lualine_x = {
+      },
       {
         "diagnostics",
         sources = {"nvim_diagnostic"},
+        colored = true,
         symbols = {error = " ", warn = " ", info = " "},
+        sections = {"error", "warn", "info"},
         diagnostics_color = {
-          color_error = {fg = colors.red},
-          color_warn = {fg = colors.yellow},
-          color_info = {fg = colors.cyan}
+          error = {fg = colors.red},
+          warn = {fg = colors.yellow},
+          info = {fg = colors.cyan}
         }
       }
     },
+    lualine_x = {},
     lualine_y = {
       {
-        "progress",
-        separator = {left = ""},
-        padding = {right = -1}
+        "encoding",
+        color = {fg = colors.yellow}
       },
       {
-        "filesize",
-        cond = conditions.buffer_not_empty
+        "fileformat",
+        color = {fg = colors.yellow}
       },
-      "encoding",
-      "fileformat"
+      {
+        "branch",
+        separator = "",
+        padding = {left = 1, right = -2},
+        color = {fg = colors.violet}
+      },
+      {
+        "diff",
+        colored = true,
+        diff_color = {
+          added = {fg = colors.green},
+          modified = {fg = colors.orange},
+          removed = {fg = colors.red}
+        },
+        symbols = {added = " ", modified = " ", removed = " "},
+        separator = {right = ""}
+      }
     },
-    lualine_z = {
-      {"location", padding = 1}
-    }
+    lualine_z = {}
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {"filename"},
-    lualine_x = {"location"},
+    lualine_c = {
+      {
+        "filename",
+        color = {fg = colors.magenta, gui = "bold"}
+      }
+    },
+    lualine_x = {},
     lualine_y = {},
     lualine_z = {}
   },

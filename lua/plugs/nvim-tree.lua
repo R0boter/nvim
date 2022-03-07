@@ -117,7 +117,7 @@ require("nvim-tree").setup(
             }
           }
         },
-      	quit_on_open = true
+      	quit_on_open = false
       },
 			change_dir = {
 				global = true
