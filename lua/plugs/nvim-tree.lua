@@ -117,11 +117,11 @@ require("nvim-tree").setup(
             }
           }
         },
-      	quit_on_open = false
+        quit_on_open = true
       },
-			change_dir = {
-				global = true
-				},
+      change_dir = {
+        global = true
+      }
     }
   }
 )
