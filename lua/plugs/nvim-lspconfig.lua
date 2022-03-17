@@ -24,7 +24,6 @@ local servers = {
   "pyright",
   "tsserver",
   "sumneko_lua",
-  "volar",
   "intelephense",
   "emmet_ls",
   "html",
@@ -160,13 +159,7 @@ installer.on_server_ready(
           return vim.fn.getcwd()
         end
         return default_opts
-      end,
-      ["volar"] = function()
-        default_opts.root_dir = function()
-          return vim.fn.getcwd()
-        end
       end
-
       --    ["jsonls"] = function ()
       --      default_opts.settings = {}
       --    end,
