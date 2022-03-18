@@ -57,9 +57,9 @@ local colors = {
   bg = "none",
   fg = "none",
   --[[ bg = "#202328",
-  fg = "#bbc2cf", ]]
+  fg = "#008080", ]]
   yellow = "#ECBE7B",
-  cyan = "#008080",
+  cyan = "#bbc2cf",
   darkblue = "#081633",
   green = "#98be65",
   orange = "#FF8800",
@@ -296,7 +296,7 @@ require("bufferline").setup {
     persist_buffer_sort = true,
     separator_style = "thin",
     enforce_regular_tabs = true,
-    always_show_bufferline = true,
+    always_show_bufferline = false,
     sort_by = "id"
   },
   highlights = {
