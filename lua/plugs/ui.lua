@@ -1,6 +1,7 @@
 vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
+vim.o.hidden = true
 
 -- colorscheme
 
@@ -232,29 +233,14 @@ require "lualine".setup {
     lualine_y = {},
     lualine_z = {}
   },
-  --  tabline = {
-  --    lualine_a = {},
-  --    lualine_b = {
-  --      {
-  --        'buffers',
-  --        separator = {left = '|'},
-  --        mode = 2,
-  --        show_modified_status = true,
-  --        filetype_names = {
-  --        TelescopePrompt = 'Telescope',
-  --        NvimTree = 'FileExplorer',
-  --        dashboard = 'Dashboard',
-  --        packer = 'Packer',
-  --        fzf = 'FZF',
-  --        alpha = 'Alpha'
-  --        },
-  --      },
-  --    },
-  --    lualine_c = {},
-  --    lualine_x = {},
-  --    lualine_y = {},
-  --    lualine_z = {}
-  --  },
+  tabline = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = {},
+    lualine_z = {}
+  },
   extensions = {"nvim-tree", "quickfix", "toggleterm"}
 }
 
@@ -290,20 +276,9 @@ require("bufferline").setup {
     tab_size = 16,
     diagnostics = "nvim_lsp",
     diagnostics_update_in_insert = false,
-    diagnostics_indicator = function(count, level, diagnostics_dict, context)
-      return "(" .. count .. ")"
+    diagnostics_indicator = function(count)
+      return " " .. "(" .. count .. ")"
     end,
-    --custom_filter = function(buf_number)
-    --  if vim.bo[buf_number].filetype ~= "<i-dont-want-to-see-this>" then
-    --    return true
-    --  end
-    --  if vim.fn.bufname(buf_number) ~= "<buffer-name-I-dont-want>" then
-    --    return true
-    --  end
-    --  if vim.fn.getcwd() == "<work-repo>" and vim.bo[buf_number].filetype ~= "wiki" then
-    --    return true
-    --  end
-    --end,
     offsets = {
       {
         filetype = "NvimTree",
@@ -321,7 +296,124 @@ require("bufferline").setup {
     persist_buffer_sort = true,
     separator_style = "thin",
     enforce_regular_tabs = true,
-    always_show_bufferline = false,
+    always_show_bufferline = true,
     sort_by = "id"
+  },
+  highlights = {
+    background = {
+      guifg = colors.cyan,
+      guibg = colors.bg
+    },
+    buffer_visible = {
+      guifg = colors.cyan,
+      guibg = colors.bg
+    },
+    buffer_selected = {
+      guifg = colors.yellow,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    },
+    modified = {
+      guifg = colors.violet,
+      guibg = colors.bg
+    },
+    modified_visible = {
+      guifg = colors.violet,
+      guibg = colors.bg
+    },
+    modified_selected = {
+      guifg = colors.violet,
+      guibg = colors.bg
+    },
+    separator_selected = {
+      guifg = colors.magenta,
+      guibg = colors.bg
+    },
+    separator_visible = {
+      guifg = colors.magenta,
+      guibg = colors.bg
+    },
+    separator = {
+      guifg = colors.magenta,
+      guibg = colors.bg
+    },
+    info = {
+      guifg = colors.green,
+      guibg = colors.bg
+    },
+    info_visible = {
+      guifg = colors.green,
+      guibg = colors.bg
+    },
+    info_selected = {
+      guifg = colors.green,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    },
+    info_diagnostic = {
+      guifg = colors.green,
+      guibg = colors.bg
+    },
+    info_diagnostic_visible = {
+      guifg = colors.green,
+      guibg = colors.bg
+    },
+    info_diagnostic_selected = {
+      guifg = colors.green,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    },
+    warning = {
+      guifg = colors.orange,
+      guibg = colors.bg
+    },
+    warning_visible = {
+      guifg = colors.orange,
+      guibg = colors.bg
+    },
+    warning_selected = {
+      guifg = colors.orange,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    },
+    warning_diagnostic = {
+      guifg = colors.orange,
+      guibg = colors.bg
+    },
+    warning_diagnostic_visible = {
+      guifg = colors.orange,
+      guibg = colors.bg
+    },
+    warning_diagnostic_selected = {
+      guifg = colors.orange,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    },
+    error = {
+      guifg = colors.red,
+      guibg = colors.bg
+    },
+    error_visible = {
+      guifg = colors.red,
+      guibg = colors.bg
+    },
+    error_selected = {
+      guifg = colors.red,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    },
+    error_diagnostic = {
+      guifg = colors.red,
+      guibg = colors.bg
+    },
+    error_diagnostic_visible = {
+      guifg = colors.red,
+      guibg = colors.bg
+    },
+    error_diagnostic_selected = {
+      guifg = colors.red,
+      guibg = colors.bg,
+      gui = "bold,italic"
+    }
   }
 }

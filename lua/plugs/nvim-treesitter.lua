@@ -11,7 +11,10 @@ config.setup {
     "jsonc",
     "vue",
     "php",
-    "markdown"
+    "markdown",
+    "c",
+    "cpp",
+    "rust"
   },
   sync_install = false,
   highlight = {

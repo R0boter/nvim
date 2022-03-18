@@ -28,7 +28,9 @@ local servers = {
   "emmet_ls",
   "html",
   "cssls",
-  "jsonls"
+  "jsonls",
+  "clangd",
+  "rus_analyzer"
 }
 
 -- auto install language server

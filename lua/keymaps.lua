@@ -29,7 +29,9 @@ keybind("n", "<S-up>", "<C-w>2+", opts)
 keybind("n", "<S-down>", "<C-w>2-", opts)
 
 -- Buffer
-keybind("n", "<Leader>bd", ":bdelete<CR>", opts)
+keybind("n", "<Leader>dc", ":bdelete<CR>", opts)
+keybind("n", "<Leader>de", ":%bd | e#<CR>", opts)
+keybind("n", "<Leader>da", ":bufdo bd<CR>", opts)
 
 -- Indenting
 keybind("v", "<S-Tab>", "<gv", opts)
@@ -51,10 +53,10 @@ require("kommentary.config").use_extended_mappings()
 -- keybind('n', 'n', 'n:nohl<CR>', {noremap = true, silent = true})
 
 -- Telescope
-keybind("n", "<Leader>s", ":Telescope current_buffer_fuzzy_find<CR>", opts)
 keybind("n", "<Leader>fs", ":Telescope grep_string<CR>", opts)
 keybind("n", "<Leader>ff", ":Telescope find_files<CR>", opts)
-keybind("n", "<Leader>fp", ":Telescope projects<CR>", opts)
+keybind("n", "<Leader>fm", ":Telescope media_files<CR>", opts)
+keybind("n", "<Leader>fp", ":Telescope project<CR>", opts)
 
 -- reload luasnip
 vim.api.nvim_set_keymap("n", "<Leader>rs", ":lua reloadSnip()<CR>", opts)
