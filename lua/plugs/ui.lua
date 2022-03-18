@@ -346,7 +346,7 @@ require("bufferline").setup {
       guibg = colors.bg
     },
     info_selected = {
-      guifg = colors.green,
+      guifg = colors.yellow,
       guibg = colors.bg,
       gui = "bold,italic"
     },
@@ -372,7 +372,7 @@ require("bufferline").setup {
       guibg = colors.bg
     },
     warning_selected = {
-      guifg = colors.orange,
+      guifg = colors.yellow,
       guibg = colors.bg,
       gui = "bold,italic"
     },
@@ -398,7 +398,7 @@ require("bufferline").setup {
       guibg = colors.bg
     },
     error_selected = {
-      guifg = colors.red,
+      guifg = colors.yellow,
       guibg = colors.bg,
       gui = "bold,italic"
     },
