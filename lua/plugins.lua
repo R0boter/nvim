@@ -48,6 +48,7 @@ packer.startup(
         "williamboman/nvim-lsp-installer"
       }
     }
+    use "simrat39/rust-tools.nvim"
     use {
       "hrsh7th/nvim-cmp",
       requires = {
@@ -63,6 +64,8 @@ packer.startup(
         "saadparwaiz1/cmp_luasnip"
       }
     }
+
+    use "mfussenegger/nvim-dap"
 
     -- UI
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}

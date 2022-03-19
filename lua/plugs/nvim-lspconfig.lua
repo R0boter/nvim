@@ -161,6 +161,13 @@ installer.on_server_ready(
           return vim.fn.getcwd()
         end
         return default_opts
+      end,
+      ["rus_analyzer"] = function()
+        require("rust-tools").setup {
+          server = vim.tbl_deep_extend("force", server:get_default_options(), {})
+        }
+        server:attach_buffers()
+        require("rest-tools").start_standalone_if_required()
       end
       --    ["jsonls"] = function ()
       --      default_opts.settings = {}
