@@ -27,6 +27,13 @@ keybind("n", "<S-left>", "<C-w>2<", opts)
 keybind("n", "<S-right>", "<C-w>2>", opts)
 keybind("n", "<S-up>", "<C-w>2+", opts)
 keybind("n", "<S-down>", "<C-w>2-", opts)
+keybind("n", "j", "gjzz", opts)
+keybind("n", "k", "gkzz", opts)
+keybind("n", "n", "nzz", opts)
+keybind("n", "<S-n>", "<S-n>zz", opts)
+keybind("n", "*", "*zz", opts)
+keybind("n", "#", "#zz", opts)
+keybind("i", "<CR>", "<CR><C-o>zz", opts)
 
 -- Buffer
 keybind("n", "<Leader>dc", ":bdelete<CR>", opts)
