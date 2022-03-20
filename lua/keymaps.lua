@@ -33,7 +33,6 @@ keybind("n", "n", "nzz", opts)
 keybind("n", "<S-n>", "<S-n>zz", opts)
 keybind("n", "*", "*zz", opts)
 keybind("n", "#", "#zz", opts)
-keybind("i", "<CR>", "<CR><C-o>zz", opts)
 
 -- Buffer
 keybind("n", "<Leader>dc", ":bdelete<CR>", opts)
@@ -80,3 +79,4 @@ vim.api.nvim_set_keymap("n", "<Leader>rs", ":lua reloadSnip()<CR>", opts)
 --keybind('t', '<A-d>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>', opts)
 
 -- dashboard
+--
