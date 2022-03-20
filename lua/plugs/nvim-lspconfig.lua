@@ -1,10 +1,15 @@
 -- Setup lspconfig.
 local installer = require("nvim-lsp-installer")
+local dap = require("dap")
 
 -- Set sumneko_lua_language_server executable file
 local lua_server_exe = {
   vim.fn.stdpath("data") .. "/lsp_servers/sumneko_lua/extension/server/bin/lua-language-server"
 }
+-- Update this path
+local extension_path = vim.fn.stdpath("data") .. "/lsp_servers/codelldb/"
+local codelldb_path = extension_path .. "adapter/codelldb"
+local liblldb_path = extension_path .. "lldb/lib/liblldb.so"
 -- Lsp installer
 -- nvim-lsp-installer ui
 installer.settings(
@@ -163,9 +168,14 @@ installer.on_server_ready(
         return default_opts
       end,
       ["rus_analyzer"] = function()
-        require("rust-tools").setup {
-          server = vim.tbl_deep_extend("force", server:get_default_options(), {})
-        }
+        require("rust-tools").setup(
+          {
+            server = vim.tbl_deep_extend("force", server:get_default_options(), {}),
+            dap = {
+              adapter = require("rust-tools.dap").get_codelldb_adapter(codelldb_path, liblldb_path)
+            }
+          }
+        )
         server:attach_buffers()
         require("rest-tools").start_standalone_if_required()
       end

@@ -66,17 +66,15 @@ keybind("n", "<Leader>fp", ":Telescope project<CR>", opts)
 
 -- reload luasnip
 vim.api.nvim_set_keymap("n", "<Leader>rs", ":lua reloadSnip()<CR>", opts)
--- Terminal
---keybind("t", "<ESC>", "<C-\\><C-n><CR>", opts)
---keybind("n", "<Leader>t", ":ToggleTermToggleAll<CR>", opts)
---keybind("n", "<Leader>1", ":1ToggleTerm<CR>", opts)
---keybind("n", "<Leader>2", ":2ToggleTerm<CR>", opts)
---keybind("n", "<Leader>3", ":3ToggleTerm<CR>", opts)
---keybind("n", "<Leader>4", ":4ToggleTerm<CR>", opts)
---keybind("n", "<Leader>5", ":5ToggleTerm<CR>", opts)
+
 -- Lspsaga
 --keybind('n', '<A-d>', ':Lspsaga open_floaterm<CR>', opts)
 --keybind('t', '<A-d>', '<C-\\><C-n>:Lspsaga close_floaterm<CR>', opts)
 
--- dashboard
---
+-- Translate
+keybind("x", "<Leader>tf", ":Translate zh-CN -source=en -parse_after=window -output=floating<CR>", opts)
+keybind("x", "<Leader>tfi", ":Translate zh-CN -source=en -output=insert<CR>", opts)
+keybind("x", "<Leader>tfr", ":Translate zh-CN -source=en -output=replace<CR>", opts)
+keybind("x", "<Leader>te", ":Translate en -source=zh-CN -parse_after=window -output=floating<CR>", opts)
+keybind("x", "<Leader>tei", ":Translate en -source=zh-CN -output=insert<CR>", opts)
+keybind("x", "<Leader>ter", ":Translate en -source=zh-CN -output=replace<CR>", opts)

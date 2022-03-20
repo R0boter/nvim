@@ -93,6 +93,7 @@ packer.startup(
     use "b3nj5m1n/kommentary"
     use "mhartington/formatter.nvim"
     use "mg979/vim-visual-multi"
+    use "uga-rosa/translate.nvim"
 
     -- Telescope (require ripgrep)
     use {
