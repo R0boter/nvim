@@ -568,5 +568,20 @@
     "prefix": "ce",
     "body": ["console.error($1);", "$0"],
     "description": "Log error to the console"
-  }
+  },
+	"Create a mongoose model": {
+		"prefix": "cmm",
+		"body": [
+      "const mongoose = require('mongoose')",
+      "",
+      "const schema = new mongoose.Schema({",
+			"\t${1:key}",
+			"},{",
+			"\tversionKey: false,$0",
+			"})",
+      "module.exports = mongoose.model('${TM_FILENAME_BASE}', schema)"
+		],
+    "description": "Log error to the console"
+	}
+
 }

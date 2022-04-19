@@ -2,7 +2,6 @@
   "reactFunctionComponent": {
     "prefix": "rfc",
     "body": [
-			"import React from 'react'",
 			"",
 			"const ${TM_FILENAME_BASE} = () => {",
 			"\treturn (",
@@ -31,25 +30,10 @@
 			"export default ${1:functionname}"],
     "description": "Creates a React function component with custom name"
   },
-  "reactFunctionComponentWithEmotion": {
-    "prefix": "rfce",
-    "body": "import { css } from '@emotion/core'\n\nexport const ${TM_FILENAME_BASE} = () => {\n\treturn (\n\t\t<div css={css``}>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
-    "description": "Creates a React functional component with emotion"
-  },
   "reactStatelessProps": {
     "prefix": "rfcp",
     "body": "import { PropTypes } from 'react'\n\nconst ${TM_FILENAME_BASE} = props => {\n\treturn (\n\t\t<div>\n\t\t\t\n\t\t</div>\n\t)\n}\n\n${1}.propTypes = {\n\t$0\n}\n\nexport default ${1}",
     "description": "Creates a React function component with PropTypes"
-  },
-  "classConstructor": {
-    "prefix": "con",
-    "body": "constructor (props) {\n\tsuper(props)\n\t$0\n}\n",
-    "description": "Adds a default constructor for the class that contains props as arguments"
-  },
-  "classConstructorContext": {
-    "prefix": "conc",
-    "body": "constructor (props, context) {\n\tsuper(props, context)\n\t$0\n}\n",
-    "description": "Adds a default constructor for the class that contains props and context as arguments"
   },
   "componentWillMount": {
     "prefix": "cwm",
