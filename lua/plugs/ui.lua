@@ -2,7 +2,12 @@ vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
 vim.o.hidden = true
+
 vim.diagnostic.config({virtual_text = false})
+vim.api.nvim_command("sign define DiagnosticSignError text=>> texthl=DiagnosticSignError linehl= numhl=")
+vim.api.nvim_command("sign define DiagnosticSignWarn text=>> texthl=DiagnosticSignWarn linehl= numhl=")
+vim.api.nvim_command("sign define DiagnosticSignInfo text=>> texthl=DiagnosticSignInfo linehl= numhl=")
+vim.api.nvim_command("sign define DiagnosticSignHint text=>> texthl=DiagnosticSignHint linehl= numhl=")
 
 -- colorscheme
 
