@@ -142,7 +142,7 @@ installer.on_server_ready(
         end
         default_opts.settings = {
           python = {
-            pythonPath = ".env/bin/python",
+            pythonPath = "venv/bin/python",
             analysis = {
               autoImportCompletions = true,
               autoSearchPaths = true,
