@@ -59,7 +59,7 @@ require("kommentary.config").use_extended_mappings()
 -- keybind('n', 'n', 'n:nohl<CR>', {noremap = true, silent = true})
 
 -- Telescope
-keybind("n", "<Leader>fs", ":Telescope grep_string<CR>", opts)
+keybind("n", "<Leader>fs", ":Telescope live_grep<CR>", opts)
 keybind("n", "<Leader>ff", ":Telescope find_files<CR>", opts)
 keybind("n", "<Leader>fm", ":Telescope media_files<CR>", opts)
 keybind("n", "<Leader>fp", ":Telescope project<CR>", opts)
