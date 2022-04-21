@@ -110,6 +110,7 @@ packer.startup(
       requires = {{"nvim-lua/popup.nvim"}}
     }
     use "nvim-telescope/telescope-project.nvim"
+    use {"nvim-telescope/telescope-ui-select.nvim"}
 
     -- Terminal
     -- use "akinsho/toggleterm.nvim"
