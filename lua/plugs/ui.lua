@@ -2,6 +2,7 @@ vim.o.termguicolors = true
 vim.o.cursorline = true
 vim.o.cursorcolumn = true
 vim.o.hidden = true
+vim.diagnostic.config({virtual_text = false})
 
 -- colorscheme
 
@@ -338,11 +339,11 @@ require("bufferline").setup {
       guibg = colors.bg
     },
     info = {
-      guifg = colors.green,
+      guifg = colors.cyan,
       guibg = colors.bg
     },
     info_visible = {
-      guifg = colors.green,
+      guifg = colors.cyan,
       guibg = colors.bg
     },
     info_selected = {
@@ -351,15 +352,15 @@ require("bufferline").setup {
       gui = "bold,italic"
     },
     info_diagnostic = {
-      guifg = colors.green,
+      guifg = colors.cyan,
       guibg = colors.bg
     },
     info_diagnostic_visible = {
-      guifg = colors.green,
+      guifg = colors.cyan,
       guibg = colors.bg
     },
     info_diagnostic_selected = {
-      guifg = colors.green,
+      guifg = colors.cyan,
       guibg = colors.bg,
       gui = "bold,italic"
     },
