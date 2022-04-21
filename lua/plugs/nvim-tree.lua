@@ -12,7 +12,7 @@ vim.g.nvim_tree_special_files = {
   MAKEFILE = 1
 }
 vim.g.nvim_tree_show_icons = {
-  git = 0,
+  git = 1,
   folders = 1,
   files = 1,
   folder_arrows = 1
@@ -94,7 +94,7 @@ require("nvim-tree").setup(
       args = {}
     },
     diagnostics = {
-      enable = true,
+      enable = false,
       show_on_dirs = false,
       icons = {
         hint = "",
