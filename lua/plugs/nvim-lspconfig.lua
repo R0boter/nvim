@@ -1,5 +1,6 @@
 -- Setup lspconfig.
 local installer = require("nvim-lsp-installer")
+local lspconfig = require("lspconfig")
 local dap = require("dap")
 
 -- Set sumneko_lua_language_server executable file
@@ -28,6 +29,7 @@ installer.settings(
 local servers = {
   "pyright",
   "tsserver",
+  "tailwindcss",
   "sumneko_lua",
   "intelephense",
   "emmet_ls",
@@ -131,15 +133,52 @@ installer.on_server_ready(
           "typescript",
           "typescriptreact"
         }
-        default_opts.root_dir = function()
-          return vim.fn.getcwd()
-        end
+        default_opts.root_dir = lspconfig.util.root_pattern("package.json", "node_modules", ".git")
+
+        return default_opts
+      end,
+      ["tailwindcss"] = function()
+        default_opts.filetypes = {
+          "html",
+          "php",
+          "css",
+          "less",
+          "sass",
+          "scss",
+          "javascript",
+          "javascriptreact",
+          "vue"
+        }
+        default_opts.root_dir =
+          lspconfig.util.root_pattern(
+          "tailwind.config.js",
+          "tailwind.config.ts",
+          "postcss.config.js",
+          "postcss.config.ts",
+          "package.json",
+          "node_modules",
+          ".git"
+        )
+        default_opts.settings = {
+          tailwindCSS = {
+            classAttributes = {"class", "className", "classList", "ngClass"},
+            lint = {
+              cssConflict = "warning",
+              invalidApply = "error",
+              invalidConfigPath = "error",
+              invalidScreen = "error",
+              invalidTailwindDirective = "error",
+              invalidVariant = "error",
+              recommendedVariantOrder = "warning"
+            },
+            validate = true
+          }
+        }
         return default_opts
       end,
       ["pyright"] = function()
-        default_opts.root_dir = function()
-          return vim.fn.getcwd()
-        end
+        default_opts.root_dir = lspconfig.util.root_pattern(".env", ".git")
+
         default_opts.settings = {
           python = {
             pythonPath = ".env/bin/python",
