@@ -140,7 +140,6 @@ installer.on_server_ready(
       ["tailwindcss"] = function()
         default_opts.filetypes = {
           "html",
-          "php",
           "css",
           "less",
           "sass",

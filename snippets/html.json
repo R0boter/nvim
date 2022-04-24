@@ -846,5 +846,10 @@
         ],
         "description": "HTML - Defines a video",
         "scope": "text.html"
-    }
+    },
+	"ThinkPHP tpl lang": {
+		"prefix": "tpll",
+		"body": "{\\$Think.lang.${0}}",
+		"description": "ThinkPHP tpl lang"
+	}
 }

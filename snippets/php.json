@@ -230,5 +230,11 @@
       "}"
     ],
     "description": "Try catch block"
-  }
+  },
+	"ThinkPHP lang": {
+		"prefix": "tpll",
+		"body": "L('${0}')",
+		"description": "ThinkPHP lang"
+	}
+
 }

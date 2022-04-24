@@ -247,7 +247,7 @@
   },
   "jsx element": {
     "prefix": "j",
-    "body": "<${1:elementName}>\n\t$0\n</${1}>",
+    "body": "<${1:elementName} className='${2}'>\n\t$0\n</${1}>",
     "description": "an element"
   },
   "jsx element self closed": {

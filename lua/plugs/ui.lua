@@ -1,6 +1,6 @@
 vim.o.termguicolors = true
 vim.o.cursorline = true
-vim.o.cursorcolumn = true
+-- vim.o.cursorcolumn = true -- 超级卡顿
 vim.o.hidden = true
 
 vim.diagnostic.config({virtual_text = false})
