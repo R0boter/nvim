@@ -10,22 +10,7 @@ vim.api.nvim_command("sign define DiagnosticSignInfo text=>> texthl=DiagnosticSi
 vim.api.nvim_command("sign define DiagnosticSignHint text=>> texthl=DiagnosticSignHint linehl= numhl=")
 
 -- colorscheme
-
 vim.cmd [[colors deus]]
-
---vim.g.gruvbox_baby_function_style = "NONE"
---vim.g.gruvbox_baby_keyword_style = "italic"
---vim.cmd [[colorscheme gruvbox-baby]]
---vim.cmd [[highlight NvimTreeNormal guibg=NONE]]
---vim.cmd [[highlight NvimTreeNormalNC guibg=NONE]]
-
---vim.g.nord_contrast = true
---vim.g.nord_borders = true
---vim.g.nord_disable_background = true
---vim.g.nord_enable_sidebar_background = false
---vim.g.nord_cursorline_transparent = true
---vim.g.nord_italic = false
---require("nord").set()
 
 -- indent blankline
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]

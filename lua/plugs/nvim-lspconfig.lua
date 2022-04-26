@@ -32,10 +32,10 @@ local servers = {
   "tailwindcss",
   "sumneko_lua",
   "intelephense",
-  "emmet_ls",
+  --[[ "emmet_ls",
   "html",
   "cssls",
-  "jsonls",
+  "jsonls", ]]
   "clangd",
   "rus_analyzer"
 }
@@ -56,6 +56,7 @@ local function on_attach(client, bufnr)
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
   end
+
   local function buf_set_option(...)
     vim.api.nvim_buf_set_option(bufnr, ...)
   end
@@ -77,12 +78,13 @@ local function on_attach(client, bufnr)
   buf_set_keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
   buf_set_keymap("n", "<space>D", ":Telescope lsp_type_definitions()<CR>", opts)
   buf_set_keymap("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-  buf_set_keymap("n", "<space>ca", ":Telescope actions<CR>", opts)
+  buf_set_keymap("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action<CR>", opts)
   buf_set_keymap("n", "<space>di", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   buf_set_keymap("n", "<space>dn", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "<space>dp", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<space>dl", ":Telescope diagnostics<CR>", opts)
-  buf_set_keymap("n", "<space>fb", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- buf_set_keymap("n", "<space>fb", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  buf_set_keymap("n", "<space>fb", "<cmd>Format<CR>", opts)
 end
 
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -190,21 +192,6 @@ installer.on_server_ready(
           }
         }
       end,
-      ["html"] = function()
-        default_opts.filetypes = {
-          "html"
-        }
-        default_opts.root_dir = function()
-          return vim.fn.getcwd()
-        end
-      end,
-      ["cssls"] = function()
-        default_opts.filetypes = {"css", "scss", "less", "html"}
-        default_opts.root_dir = function()
-          return vim.fn.getcwd()
-        end
-        return default_opts
-      end,
       ["rus_analyzer"] = function()
         require("rust-tools").setup(
           {
@@ -217,6 +204,21 @@ installer.on_server_ready(
         server:attach_buffers()
         require("rest-tools").start_standalone_if_required()
       end
+      --["html"] = function()
+      --  default_opts.filetypes = {
+      --    "html"
+      --  }
+      --  default_opts.root_dir = function()
+      --    return vim.fn.getcwd()
+      --  end
+      --end,
+      --["cssls"] = function()
+      --  default_opts.filetypes = {"css", "scss", "less", "html"}
+      --  default_opts.root_dir = function()
+      --    return vim.fn.getcwd()
+      --  end
+      --  return default_opts
+      --end,
       --    ["jsonls"] = function ()
       --      default_opts.settings = {}
       --    end,

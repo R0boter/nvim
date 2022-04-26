@@ -78,3 +78,7 @@ keybind("x", "<Leader>tfr", ":Translate zh-CN -source=en -output=replace<CR>", o
 keybind("x", "<Leader>te", ":Translate en -source=zh-CN -parse_after=window -output=floating<CR>", opts)
 keybind("x", "<Leader>tei", ":Translate en -source=zh-CN -output=insert<CR>", opts)
 keybind("x", "<Leader>ter", ":Translate en -source=zh-CN -output=replace<CR>", opts)
+
+-- save file and formatter
+keybind("n", "<C-w>", ":w<CR>", opts)
+keybind("n", "<C-f>", ":Format<CR>", opts)

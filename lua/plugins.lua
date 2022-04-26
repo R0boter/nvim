@@ -88,8 +88,6 @@ packer.startup(
     use "lukas-reineke/indent-blankline.nvim"
     use "p00f/nvim-ts-rainbow"
     use "norcalli/nvim-colorizer.lua"
-    use "shaunsingh/nord.nvim"
-    use {"luisiacc/gruvbox-baby", branch = "main"}
     use {"Avimitin/neovim-deus"}
 
     -- Edit
