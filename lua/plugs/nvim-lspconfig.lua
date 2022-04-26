@@ -25,6 +25,7 @@ installer.settings(
   }
 )
 
+
 -- language server name's table
 local servers = {
   "pyright",
