@@ -27,16 +27,15 @@ keybind("n", "<S-left>", "<C-w>2<", opts)
 keybind("n", "<S-right>", "<C-w>2>", opts)
 keybind("n", "<S-up>", "<C-w>2+", opts)
 keybind("n", "<S-down>", "<C-w>2-", opts)
-keybind("n", "j", "gjzz", opts)
+--[[ keybind("n", "j", "gjzz", opts)
 keybind("n", "k", "gkzz", opts)
 keybind("n", "n", "nzz", opts)
 keybind("n", "<S-n>", "<S-n>zz", opts)
 keybind("n", "*", "*zz", opts)
-keybind("n", "#", "#zz", opts)
+keybind("n", "#", "#zz", opts) ]]
 
 -- Buffer
 keybind("n", "<Leader>dc", ":bdelete<CR>", opts)
-keybind("n", "<Leader>de", ":%bd | e#<CR>", opts)
 keybind("n", "<Leader>da", ":bufdo bd<CR>", opts)
 
 -- Indenting
@@ -59,6 +58,7 @@ require("kommentary.config").use_extended_mappings()
 -- keybind('n', 'n', 'n:nohl<CR>', {noremap = true, silent = true})
 
 -- Telescope
+keybind("n", "<Leader>t", ":Telescope <CR>", opts)
 keybind("n", "<Leader>fs", ":Telescope live_grep<CR>", opts)
 keybind("n", "<Leader>ff", ":Telescope find_files<CR>", opts)
 keybind("n", "<Leader>fm", ":Telescope media_files<CR>", opts)

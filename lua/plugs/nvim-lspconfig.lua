@@ -25,20 +25,19 @@ installer.settings(
   }
 )
 
-
 -- language server name's table
 local servers = {
   "pyright",
   "tsserver",
   "tailwindcss",
   "sumneko_lua",
-  "intelephense",
-  --[[ "emmet_ls",
+  "rus_analyzer"
+  --[[ "intelephense",
+  "emmet_ls",
   "html",
   "cssls",
-  "jsonls", ]]
-  "clangd",
-  "rus_analyzer"
+  "jsonls",
+  "clangd", ]]
 }
 
 -- auto install language server
@@ -95,7 +94,17 @@ installer.on_server_ready(
     -- Specify the default options which we'll use to setup all servers
     local default_opts = {
       on_attach = on_attach,
-      capabilities = capabilities
+      capabilities = capabilities,
+			handlers = {
+   ["textDocument/publishDiagnostics"] = vim.lsp.with(
+         vim.lsp.diagnostic.on_publish_diagnostics, {
+           -- Disable virtual_text
+           virtual_text = false,
+						underline = false
+
+         }
+       ),
+			}
     }
 
     -- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
@@ -234,3 +243,5 @@ installer.on_server_ready(
     server:setup(server_options)
   end
 )
+
+

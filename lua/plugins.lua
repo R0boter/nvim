@@ -8,17 +8,25 @@ end
 
 local packer = require("packer")
 
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
+
 --config
 packer.init(
   {
     git = {
       default_url_format = "https://github.com/%s"
+    },
+    display = {
+    	open_fn = function ()
+    		return require('packer.util').float({border = 'single'})
+    	end
     }
-    --	display = {
-    --		open_fn = function ()
-    --			return require('packer.until').float({border = 'single'})
-    --		end
-    --	}
   }
 )
 
@@ -65,6 +73,13 @@ packer.startup(
       }
     }
 
+    use {
+      "dcampos/nvim-snippy",
+      requires = {
+        "dcampos/cmp-snippy"
+      }
+    }
+
     -- DeBuger
     use "Pocco81/DAPInstall.nvim"
     use "mfussenegger/nvim-dap"
@@ -90,6 +105,13 @@ packer.startup(
     use "norcalli/nvim-colorizer.lua"
     use {"Avimitin/neovim-deus"}
 
+use 'Mofiqul/dracula.nvim'
+use({
+	"catppuccin/nvim",
+	as = "catppuccin"
+})
+use 'navarasu/onedark.nvim'
+
     -- Edit
     use "ggandor/lightspeed.nvim"
     use "steelsojka/pears.nvim"
@@ -97,6 +119,7 @@ packer.startup(
     use "mhartington/formatter.nvim"
     use "mg979/vim-visual-multi"
     use "uga-rosa/translate.nvim"
+    use "ethanholz/nvim-lastplace"
 
     -- Telescope (require ripgrep)
     use {

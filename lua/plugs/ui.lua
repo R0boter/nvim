@@ -3,14 +3,47 @@ vim.o.cursorline = true
 -- vim.o.cursorcolumn = true -- 超级卡顿
 vim.o.hidden = true
 
-vim.diagnostic.config({virtual_text = false})
 vim.api.nvim_command("sign define DiagnosticSignError text=>> texthl=DiagnosticSignError linehl= numhl=")
 vim.api.nvim_command("sign define DiagnosticSignWarn text=>> texthl=DiagnosticSignWarn linehl= numhl=")
 vim.api.nvim_command("sign define DiagnosticSignInfo text=>> texthl=DiagnosticSignInfo linehl= numhl=")
 vim.api.nvim_command("sign define DiagnosticSignHint text=>> texthl=DiagnosticSignHint linehl= numhl=")
 
 -- colorscheme
-vim.cmd [[colors deus]]
+-- vim.cmd [[colors deus]]
+
+require("onedark").setup {
+  -- Main options --
+  style = "cool", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
+  transparent = true, -- Show/hide background
+  term_colors = true, -- Change terminal color as per the selected theme style
+  ending_tildes = false, -- Show the end-of-buffer tildes. By default they are hidden
+  cmp_itemkind_reverse = false, -- reverse item kind highlights in cmp menu
+  -- toggle theme style ---
+  toggle_style_key = "<leader>ts", -- Default keybinding to toggle
+  toggle_style_list = {"dark", "darker", "cool", "deep", "warm", "warmer", "light"}, -- List of styles to toggle between
+  -- Change code style ---
+  -- Options are italic, bold, underline, none
+  -- You can configure multiple style with comma seperated, For e.g., keywords = 'italic,bold'
+  code_style = {
+    comments = "italic",
+    keywords = "none",
+    functions = "none",
+    strings = "none",
+    variables = "none"
+  },
+  -- Custom Highlights --
+  colors = {}, -- Override default colors
+  highlights = {}, -- Override highlight groups
+  -- Plugins Config --
+  diagnostics = {
+    darker = true, -- darker colors for diagnostic
+    undercurl = true, -- use undercurl instead of underline for diagnostics
+    background = true -- use background color for virtual text
+  }
+}
+require("onedark").load()
+
+-- vim.cmd [[colorscheme dracula]]
 
 -- indent blankline
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
@@ -47,7 +80,7 @@ require "colorizer".setup {
 local colors = {
   bg = "none",
   fg = "none",
-  --[[ bg = "#202328",
+  --[[ bg = "#232b39",
   fg = "#008080", ]]
   yellow = "#ECBE7B",
   cyan = "#bbc2cf",
@@ -113,6 +146,7 @@ require "lualine".setup {
       {
         "filetype",
         separator = "",
+        right_padding = 2,
         colored = true,
         icon_only = true
       },
@@ -265,7 +299,7 @@ require("bufferline").setup {
     max_name_length = 18,
     max_prefix_length = 15,
     tab_size = 16,
-    diagnostics = "nvim_lsp",
+    diagnostics = false,
     diagnostics_update_in_insert = false,
     diagnostics_indicator = function(count)
       return " " .. "(" .. count .. ")"
@@ -289,122 +323,122 @@ require("bufferline").setup {
     enforce_regular_tabs = true,
     always_show_bufferline = false,
     sort_by = "id"
-  },
-  highlights = {
-    background = {
-      guifg = colors.cyan,
-      guibg = colors.bg
-    },
-    buffer_visible = {
-      guifg = colors.cyan,
-      guibg = colors.bg
-    },
-    buffer_selected = {
-      guifg = colors.yellow,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    },
-    modified = {
-      guifg = colors.violet,
-      guibg = colors.bg
-    },
-    modified_visible = {
-      guifg = colors.violet,
-      guibg = colors.bg
-    },
-    modified_selected = {
-      guifg = colors.violet,
-      guibg = colors.bg
-    },
-    separator_selected = {
-      guifg = colors.magenta,
-      guibg = colors.bg
-    },
-    separator_visible = {
-      guifg = colors.magenta,
-      guibg = colors.bg
-    },
-    separator = {
-      guifg = colors.magenta,
-      guibg = colors.bg
-    },
-    info = {
-      guifg = colors.cyan,
-      guibg = colors.bg
-    },
-    info_visible = {
-      guifg = colors.cyan,
-      guibg = colors.bg
-    },
-    info_selected = {
-      guifg = colors.yellow,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    },
-    info_diagnostic = {
-      guifg = colors.cyan,
-      guibg = colors.bg
-    },
-    info_diagnostic_visible = {
-      guifg = colors.cyan,
-      guibg = colors.bg
-    },
-    info_diagnostic_selected = {
-      guifg = colors.cyan,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    },
-    warning = {
-      guifg = colors.orange,
-      guibg = colors.bg
-    },
-    warning_visible = {
-      guifg = colors.orange,
-      guibg = colors.bg
-    },
-    warning_selected = {
-      guifg = colors.yellow,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    },
-    warning_diagnostic = {
-      guifg = colors.orange,
-      guibg = colors.bg
-    },
-    warning_diagnostic_visible = {
-      guifg = colors.orange,
-      guibg = colors.bg
-    },
-    warning_diagnostic_selected = {
-      guifg = colors.orange,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    },
-    error = {
-      guifg = colors.red,
-      guibg = colors.bg
-    },
-    error_visible = {
-      guifg = colors.red,
-      guibg = colors.bg
-    },
-    error_selected = {
-      guifg = colors.yellow,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    },
-    error_diagnostic = {
-      guifg = colors.red,
-      guibg = colors.bg
-    },
-    error_diagnostic_visible = {
-      guifg = colors.red,
-      guibg = colors.bg
-    },
-    error_diagnostic_selected = {
-      guifg = colors.red,
-      guibg = colors.bg,
-      gui = "bold,italic"
-    }
   }
+  -- highlights = {
+  --  background = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg
+  --  },
+  --  buffer_visible = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg
+  --  },
+  --  buffer_selected = {
+  --    guifg = colors.yellow,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  },
+  --  modified = {
+  --    guifg = colors.violet,
+  --    guibg = colors.bg
+  --  },
+  --  modified_visible = {
+  --    guifg = colors.violet,
+  --    guibg = colors.bg
+  --  },
+  --  modified_selected = {
+  --    guifg = colors.violet,
+  --    guibg = colors.bg
+  --  },
+  --  separator_selected = {
+  --    guifg = colors.magenta,
+  --    guibg = colors.bg
+  --  },
+  --  separator_visible = {
+  --    guifg = colors.magenta,
+  --    guibg = colors.bg
+  --  },
+  --  separator = {
+  --    guifg = colors.magenta,
+  --    guibg = colors.bg
+  --  },
+  --  info = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg
+  --  },
+  --  info_visible = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg
+  --  },
+  --  info_selected = {
+  --    guifg = colors.yellow,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  },
+  --  info_diagnostic = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg
+  --  },
+  --  info_diagnostic_visible = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg
+  --  },
+  --  info_diagnostic_selected = {
+  --    guifg = colors.cyan,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  },
+  --  warning = {
+  --    guifg = colors.orange,
+  --    guibg = colors.bg
+  --  },
+  --  warning_visible = {
+  --    guifg = colors.orange,
+  --    guibg = colors.bg
+  --  },
+  --  warning_selected = {
+  --    guifg = colors.yellow,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  },
+  --  warning_diagnostic = {
+  --    guifg = colors.orange,
+  --    guibg = colors.bg
+  --  },
+  --  warning_diagnostic_visible = {
+  --    guifg = colors.orange,
+  --    guibg = colors.bg
+  --  },
+  --  warning_diagnostic_selected = {
+  --    guifg = colors.orange,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  },
+  --  error = {
+  --    guifg = colors.red,
+  --    guibg = colors.bg
+  --  },
+  --  error_visible = {
+  --    guifg = colors.red,
+  --    guibg = colors.bg
+  --  },
+  --  error_selected = {
+  --    guifg = colors.yellow,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  },
+  --  error_diagnostic = {
+  --    guifg = colors.red,
+  --    guibg = colors.bg
+  --  },
+  --  error_diagnostic_visible = {
+  --    guifg = colors.red,
+  --    guibg = colors.bg
+  --  },
+  --  error_diagnostic_selected = {
+  --    guifg = colors.red,
+  --    guibg = colors.bg,
+  --    gui = "bold,italic"
+  --  }
+  --}
 }

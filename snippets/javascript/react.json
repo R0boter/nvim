@@ -246,12 +246,12 @@
     "description": "An object taking on a particular shape required"
   },
   "jsx element": {
-    "prefix": "j",
+    "prefix": "jj",
     "body": "<${1:elementName} className='${2}'>\n\t$0\n</${1}>",
     "description": "an element"
   },
   "jsx element self closed": {
-    "prefix": "jc",
+    "prefix": "jf",
     "body": "<${1:elementName} />",
     "description": "an element self closed"
   },

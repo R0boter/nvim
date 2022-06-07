@@ -8,7 +8,7 @@ vim.o.clipboard = "unnamedplus"
 vim.o.autoread = true
 vim.o.fdm = "indent"
 vim.o.foldlevelstart = 99
-vim.api.nvim_command("autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE")
+-- vim.api.nvim_command("autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE")
 vim.o.backup = true
 vim.o.swapfile = true
 vim.o.undofile = true
