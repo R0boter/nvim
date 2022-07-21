@@ -23,9 +23,9 @@ packer.init(
       default_url_format = "https://github.com/%s"
     },
     display = {
-    	open_fn = function ()
-    		return require('packer.util').float({border = 'single'})
-    	end
+      open_fn = function()
+        return require("packer.util").float({border = "single"})
+      end
     }
   }
 )
@@ -105,12 +105,7 @@ packer.startup(
     use "norcalli/nvim-colorizer.lua"
     use {"Avimitin/neovim-deus"}
 
-use 'Mofiqul/dracula.nvim'
-use({
-	"catppuccin/nvim",
-	as = "catppuccin"
-})
-use 'navarasu/onedark.nvim'
+    use "navarasu/onedark.nvim"
 
     -- Edit
     use "ggandor/lightspeed.nvim"

@@ -31,9 +31,13 @@ cmp_config = {
     ---@usage The minimum length of a word to complete on.
     keyword_length = 2
   },
+  matching = {
+    disallow_fuzzy_matching = true,
+    disallow_partial_matching = true,
+    disallow_prefix_unmatching = true
+  },
   experimental = {
-    ghost_text = true,
-    native_menu = false
+    ghost_text = true
   },
   formatting = {
     fields = {"kind", "abbr", "menu"},
@@ -66,16 +70,16 @@ cmp_config = {
       Variable = " "
     },
     source_names = {
+      buffer = "(Buffer)",
       nvim_lsp = "(LSP)",
+      luasnip = "(Snippet)",
       emoji = "(Emoji)",
       path = "(Path)",
-      luasnip = "(Snippet)",
-      buffer = "(Buffer)",
       spell = "(Spell)"
     },
     duplicates = {
-      buffer = 1,
-      path = 1,
+      buffer = 2,
+      path = 3,
       nvim_lsp = 0,
       luasnip = 1
     },

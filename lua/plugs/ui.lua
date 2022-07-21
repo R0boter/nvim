@@ -43,7 +43,6 @@ require("onedark").setup {
 }
 require("onedark").load()
 
--- vim.cmd [[colorscheme dracula]]
 
 -- indent blankline
 vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]

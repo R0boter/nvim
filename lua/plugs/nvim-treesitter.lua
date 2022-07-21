@@ -14,7 +14,8 @@ config.setup {
     "markdown",
     "c",
     "cpp",
-    "rust"
+    "rust",
+		"go"
   },
   sync_install = false,
   highlight = {

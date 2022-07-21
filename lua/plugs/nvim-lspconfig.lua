@@ -31,7 +31,8 @@ local servers = {
   "tsserver",
   "tailwindcss",
   "sumneko_lua",
-  "rus_analyzer"
+  "rus_analyzer",
+  "gopls"
   --[[ "intelephense",
   "emmet_ls",
   "html",
@@ -95,16 +96,16 @@ installer.on_server_ready(
     local default_opts = {
       on_attach = on_attach,
       capabilities = capabilities,
-			handlers = {
-   ["textDocument/publishDiagnostics"] = vim.lsp.with(
-         vim.lsp.diagnostic.on_publish_diagnostics, {
-           -- Disable virtual_text
-           virtual_text = false,
-						underline = false
-
-         }
-       ),
-			}
+      handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(
+          vim.lsp.diagnostic.on_publish_diagnostics,
+          {
+            -- Disable virtual_text
+            virtual_text = false,
+            underline = false
+          }
+        )
+      }
     }
 
     -- Now we'll create a server_opts table where we'll specify our custom LSP server configuration
@@ -213,6 +214,15 @@ installer.on_server_ready(
         )
         server:attach_buffers()
         require("rest-tools").start_standalone_if_required()
+      end,
+      ["gopls"] = function()
+        default_opts.root_dir = lspconfig.util.root_pattern(".env", ".git")
+        default_opts.cmd = {"gopls", "serve"}
+        default_opts.single_file_support = true
+        default_opts.init_options = {
+          usePlaceholders = true,
+          completeUnimported = true
+        }
       end
       --["html"] = function()
       --  default_opts.filetypes = {
@@ -243,5 +253,3 @@ installer.on_server_ready(
     server:setup(server_options)
   end
 )
-
-
